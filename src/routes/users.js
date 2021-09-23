@@ -28,6 +28,12 @@ router.get('/users/:id', async (req, res) => {
 });
 
 router.post('/users', async (req, res) => {
+    const {username, bio} = req.body;
+
+    const user = await UserRepo.insert(username, bio);
+
+
+    res.send(user);
 
 });
 
