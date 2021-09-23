@@ -42,11 +42,16 @@ class UserRepo {
 
    
 
-    static async delete(){
+    static async delete(id,){
+        const {rows} = await pool.query('DELETE FROM users WHERE id = $1 RETURNING *;',[id]);
+
+
+        return toCamelCase(rows)[0];
 
 
     }
 
+   
 }
 
 module.exports = UserRepo;
